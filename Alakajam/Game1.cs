@@ -1,6 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using BS;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace Alakajam
 {
@@ -11,10 +13,16 @@ namespace Alakajam
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+		StateManager stateManager;
+		RenderTarget2D statesTex;
         
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+			graphics.PreferredBackBufferWidth = 640;
+			graphics.PreferredBackBufferHeight = 480;
+
             Content.RootDirectory = "Content";
         }
 
@@ -26,8 +34,6 @@ namespace Alakajam
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -40,8 +46,15 @@ namespace Alakajam
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
-        }
+			// TODO: use this.Content to load your game content here
+			stateManager = new StateManager (
+				new Dictionary<string, GameState>
+				{
+					{ "play", new PlayState(Content) }
+				},
+				"play", new Dictionary<string, GameSubState> (), GraphicsDevice
+			);
+		}
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -62,7 +75,8 @@ namespace Alakajam
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+			// TODO: Add your update logic here
+			stateManager.Update (gameTime);
 
             base.Update(gameTime);
         }
@@ -75,7 +89,11 @@ namespace Alakajam
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+			// TODO: Add your drawing code here
+			statesTex = stateManager.Draw ();
+			spriteBatch.Begin ();
+			spriteBatch.Draw (statesTex, Vector2.Zero, Color.White);
+			spriteBatch.End ();
 
             base.Draw(gameTime);
         }
