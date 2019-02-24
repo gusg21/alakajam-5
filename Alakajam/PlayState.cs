@@ -33,14 +33,14 @@ namespace Alakajam
 			camera.MoveTo (new Vector2 (160, 120));
 
 
-			objects = new GameObjectGroup ();
+			objects = new GameObjectGroup (this);
 
             player1Controller = new PlayerController(new BreaddedButton( new BreaddedMouseButton(BreaddedMouseButton.MouseButton.LEFT)));
             player2Controller = new PlayerController(new BreaddedKey(Keys.A));
 
-			player1 = new Player (PlayerNumber.ONE, player1Controller, content);
+			player1 = new Player (PlayerNumber.ONE, player1Controller, content, camera);
 			objects.Add (player1);
-			player2 = new Player (PlayerNumber.TWO, player2Controller, content);
+			player2 = new Player (PlayerNumber.TWO, player2Controller, content, camera);
 			objects.Add (player2);
 		}
 

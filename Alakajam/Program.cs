@@ -15,6 +15,8 @@ namespace Alakajam
         {
             using (var game = new Game1())
                 game.Run();
+
+			Console.Read ();
         }
     }
 }
