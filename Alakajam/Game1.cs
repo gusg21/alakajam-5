@@ -22,7 +22,8 @@ namespace Alakajam
             graphics = new GraphicsDeviceManager(this);
 			graphics.PreferredBackBufferWidth = 640;
 			graphics.PreferredBackBufferHeight = 480;
-
+            this.IsMouseVisible = true;
+            Mouse.WindowHandle = Window.Handle;
             Content.RootDirectory = "Content";
         }
 

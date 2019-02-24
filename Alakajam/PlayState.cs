@@ -1,7 +1,10 @@
-﻿using BS;
+﻿using Alakajam.Input;
+using BS;
+using BS.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using System;
 using System.Collections.Generic;
@@ -18,6 +21,8 @@ namespace Alakajam
 		GameObjectGroup objects;
 
 		Player player1; Player player2;
+        PlayerController player1Controller;
+        PlayerController player2Controller;
 
 		public PlayState(ContentManager content)
 		{
@@ -27,11 +32,15 @@ namespace Alakajam
 			camera.Zoom = 2F;
 			camera.MoveTo (new Vector2 (160, 120));
 
+
 			objects = new GameObjectGroup ();
 
-			player1 = new Player (PlayerNumber.ONE, content);
+            player1Controller = new PlayerController(new BreaddedButton( new BreaddedMouseButton(BreaddedMouseButton.MouseButton.LEFT)));
+            player2Controller = new PlayerController(new BreaddedKey(Keys.A));
+
+			player1 = new Player (PlayerNumber.ONE, player1Controller, content);
 			objects.Add (player1);
-			player2 = new Player (PlayerNumber.TWO, content);
+			player2 = new Player (PlayerNumber.TWO, player2Controller, content);
 			objects.Add (player2);
 		}
 
