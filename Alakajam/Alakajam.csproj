@@ -49,6 +49,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Input\PlayerController.cs" />
     <Compile Include="Objects\Hook.cs" />
+    <Compile Include="Objects\HUD.cs" />
     <Compile Include="Objects\Player.cs" />
     <Compile Include="PlayState.cs" />
     <Compile Include="Program.cs" />

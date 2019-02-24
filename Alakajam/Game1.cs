@@ -20,7 +20,7 @@ namespace Alakajam
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-			graphics.PreferredBackBufferWidth = 640;
+			graphics.PreferredBackBufferWidth = 940;
 			graphics.PreferredBackBufferHeight = 480;
             this.IsMouseVisible = true;
             Mouse.WindowHandle = Window.Handle;

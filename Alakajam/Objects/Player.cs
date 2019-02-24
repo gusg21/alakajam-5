@@ -17,6 +17,15 @@ namespace Alakajam
 	{
 		PlayerNumber number;
 
+		float health;
+		public int Health
+		{
+			get
+			{
+				return (int) health;
+			}
+		}
+
 		Texture2D tex;
 
 		Texture2D fishingRod;
@@ -29,6 +38,9 @@ namespace Alakajam
 		BreaddedCamera camera;
 
         Hook hook;
+
+		public static Color BLUE = new Color (91, 110, 225);
+		public static Color GREEN = new Color (106, 190, 48);
 
 		public Player(PlayerNumber number, PlayerController controller, ContentManager content, BreaddedCamera camera) : base()
 		{
@@ -65,7 +77,6 @@ namespace Alakajam
 		{
 			float xOffset = (number == PlayerNumber.ONE ? 0 : fishingRod.Width);
 			Vector2 val = new Vector2 (xOffset, fishingRod.Height);
-			Console.WriteLine (val);
 			return val;
 		}
 

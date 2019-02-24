@@ -1,4 +1,5 @@
 ﻿using Alakajam.Input;
+using Alakajam.Objects;
 using BS;
 using BS.Input;
 using Microsoft.Xna.Framework;
@@ -28,7 +29,7 @@ namespace Alakajam
 		{
 			background = content.Load<Texture2D> ("Images/background");
 
-			camera = new BreaddedCamera (640, 480);
+			camera = new BreaddedCamera (940, 480);
 			camera.Zoom = 2F;
 			camera.MoveTo (new Vector2 (160, 120));
 
@@ -42,6 +43,8 @@ namespace Alakajam
 			objects.Add (player1);
 			player2 = new Player (PlayerNumber.TWO, player2Controller, content, camera);
 			objects.Add (player2);
+
+			objects.Add (new HUD (content, player1, player2));
 		}
 
 		public override void Update(GameTime gameTime)
