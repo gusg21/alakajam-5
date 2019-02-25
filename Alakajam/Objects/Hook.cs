@@ -16,6 +16,7 @@ namespace Alakajam.Objects
         public Vector2 position;
         public float moveSpeed;
         Texture2D tex;
+        Fish holding;
 
         public Hook(Texture2D tex, Vector2 position, float moveSpeed, Vector2 target)
         {
@@ -49,7 +50,23 @@ namespace Alakajam.Objects
         {
             base.Update(gameTime);
             position.X = MathHelper.Lerp(position.X, target.X, moveSpeed);
-            Console.WriteLine(position.X + " HOOK X ");
+            if (holding != null)
+            {
+                for (int i = 0; i < Parent.children.Count; i++)
+                {
+                    if (Parent.children[i] is Fish)
+                    {
+                        holding = (Fish)Parent.children[i];
+                        holding.caught = true;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                holding.position = position;
+            }
+            //Console.WriteLine(position.X + " HOOK X ");
         }
     }
 }

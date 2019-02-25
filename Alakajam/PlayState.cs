@@ -27,7 +27,7 @@ namespace Alakajam
 
 		public PlayState(ContentManager content)
 		{
-			background = content.Load<Texture2D> ("Images/background");
+			background = content.Load<Texture2D> ("Images/background2");
 
 			camera = new BreaddedCamera (940, 480);
 			camera.Zoom = 2F;

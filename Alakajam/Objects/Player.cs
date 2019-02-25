@@ -56,11 +56,11 @@ namespace Alakajam
 				position = new Vector2 (291, 31);
 			}
 
-			tex = content.Load<Texture2D> ("Images/player-" + (number == PlayerNumber.ONE ? "blue" : "green"));
+			tex = content.Load<Texture2D> ("Images/player-" + (number == PlayerNumber.ONE ? "blue2" : "green2"));
 			fishingRod = content.Load<Texture2D> ("Images/fishing-rod");
 			rodFlip = (number == PlayerNumber.ONE ? SpriteEffects.None : SpriteEffects.FlipHorizontally);
 			rodOffset = (number == PlayerNumber.ONE ? new Vector2(23, 31) : new Vector2 (7, 31));
-            hook = new Hook(GenerateTexture.Circle(tex.GraphicsDevice, Color.Red, 10), new Vector2(position.X, position.Y), .01F);
+            hook = new Hook(GenerateTexture.Circle(tex.GraphicsDevice, Color.Red, 10), new Vector2(position.X, position.Y), .004F);
 			rodAngleOffset = (number == PlayerNumber.ONE) ? -25 : 25;
 			this.camera = camera;
 		}
@@ -69,7 +69,7 @@ namespace Alakajam
 		{
 			float xOffset = (number == PlayerNumber.ONE ? 0 : fishingRod.Width);
 			Vector2 val = position + rodOffset + new Vector2 (xOffset, fishingRod.Height);
-			Console.WriteLine (val);
+			//Console.WriteLine (val);
 			return val;
 		}
 
@@ -99,11 +99,8 @@ namespace Alakajam
 
 
 			controller.Update(gameTime);
-            if (controller.fireButton.Pressed())
-            {
-                Console.WriteLine("test");
+                //Console.WriteLine("test");
                 hook.SetTarget(new Vector2(mousePos.X, mousePos.Y));
-            }
 
             hook.Update(gameTime);
         }
